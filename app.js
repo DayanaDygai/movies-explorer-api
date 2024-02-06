@@ -11,12 +11,12 @@ const { NotFoundError } = require('./errors/NotFoundError');
 
 dotenv.config();
 
-// const { NODE_ENV, MONGO_URL } = process.env;
+const { NODE_ENV, MONGO_URL } = process.env;
 
 const app = express();
 
 // подключаемся к серверу mongo
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb');
+mongoose.connect(NODE_ENV !== 'production' ? 'mongodb://localhost:27017/bitfilmsdb' : MONGO_URL);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
