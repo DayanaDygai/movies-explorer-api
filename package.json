@@ -21,7 +21,7 @@
     "express-winston": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.1",
-    "validator": "npm:Validator@^1.1.4",
+    "validator": "^13.11.0",
     "Validator": "^1.1.4",
     "winston": "^3.11.0"
   },
