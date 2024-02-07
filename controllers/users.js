@@ -41,8 +41,11 @@ module.exports.editInfoUser = async (req, res, next) => {
       { email, name },
       { new: true, runValidators: true },
     ).orFail(() => new Error('NotFoundError'));
-    return res.status(STATUS_OK).send({ email: user.about, name: user.name });
+    return res.status(STATUS_OK).send({ email: user.email, name: user.name });
   } catch (error) {
+    if (error.code === MONGO_DUPLICATE_ERROR_CODE) {
+      return next(new ConflictError('Такой пользователь уже существует'));
+    }
     if (error.message === 'NotFoundError') {
       return next(new NotFoundError('Пользователь не найден'));
     }

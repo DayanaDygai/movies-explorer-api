@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 const movieRouter = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const validateUrl = require('../utils/constants');
@@ -13,23 +12,27 @@ movieRouter.get('/', getMovies);
 
 movieRouter.post('/', celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().min(2).max(30),
-    director: Joi.string().required().min(2).max(30),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
     duration: Joi.number().required(),
-    year: Joi.number().required().min(4).max(4),
-    description: Joi.string().required().min(2),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
     image: Joi.string().required().regex(
       validateUrl,
     ),
     trailerLink: Joi.string().required().regex(
       validateUrl,
     ),
-    nameRU: Joi.string().required().min(2),
-    nameEN: Joi.string().required().min(2),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+    thumbnail: Joi.string().required().regex(
+      validateUrl,
+    ),
+    movieId: Joi.number().required(),
   }),
 }), createMovie);
 
-movieRouter.delete('/_id', celebrate({
+movieRouter.delete('/:moviedId', celebrate({
   params: Joi.object({
     moviedId: Joi.string().hex().length(24).required(),
   }),
@@ -41,7 +44,9 @@ module.exports = movieRouter;
 // GET /movies
 
 // # создаёт фильм с переданными в теле
-// # country, director, duration, year, description, image, trailer, nameRU, nameEN и thumbnail, movieId
+// # country, director,
+// duration, year, description, image, trailer, nameRU, nameEN
+// и thumbnail, movieId
 // POST /movies
 
 // # удаляет сохранённый фильм по id

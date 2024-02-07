@@ -11,9 +11,10 @@ const STATUS_OK_CREATED = 201;
 // запрос выполнен и создан новый ресурс
 
 module.exports.getMovies = async (req, res, next) => {
+  const owner = req.user._id;
   try {
-    const movies = await Movie.find({});
-    return res.status(STATUS_OK).send({ movies });
+    const movies = await Movie.find({ owner });
+    return res.status(STATUS_OK).send(movies);
   } catch (error) {
     return next(error);
   }
@@ -22,14 +23,14 @@ module.exports.getMovies = async (req, res, next) => {
 module.exports.createMovie = async (req, res, next) => {
   const {
     // eslint-disable-next-line max-len
-    country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId,
+    country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId,
   } = req.body;
   const owner = req.user._id;
 
   try {
     const movie = await Movie.create({
       // eslint-disable-next-line max-len
-      country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId, owner,
+      country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId, owner,
     });
     return res.status(STATUS_OK_CREATED).send({
       owner: movie.owner,
@@ -39,7 +40,7 @@ module.exports.createMovie = async (req, res, next) => {
       year: movie.year,
       description: movie.description,
       image: movie.image,
-      trailer: movie.trailer,
+      trailerLink: movie.trailerLink,
       nameRU: movie.nameRU,
       nameEN: movie.nameEN,
       thumbnail: movie.thumbnail,
