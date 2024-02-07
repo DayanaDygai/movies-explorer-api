@@ -1,5 +1,5 @@
-/* eslint-disable max-len */
 const mongoose = require('mongoose');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
@@ -37,6 +37,9 @@ const userSchema = new mongoose.Schema({
 
 module.exports = mongoose.model('user', userSchema);
 
+// eslint-disable-next-line max-len
 // email — почта пользователя, по которой он регистрируется. Это обязательное поле, уникальное для каждого пользователя. Также оно должно валидироваться на соответствие схеме электронной почты.
+// eslint-disable-next-line max-len
 // password — **хеш пароля. Обязательное поле-строка. Нужно задать поведение по умолчанию, чтобы база данных не возвращала это поле.
+// eslint-disable-next-line max-len
 // name — имя пользователя, например: Александр или Мария. Это обязательное поле-строка от 2 до 30 символов.
