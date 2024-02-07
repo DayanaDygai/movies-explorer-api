@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 const mongoose = require('mongoose');
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
