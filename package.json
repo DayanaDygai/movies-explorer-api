@@ -22,7 +22,6 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.1",
     "validator": "^13.11.0",
-    "Validator": "^1.1.4",
     "winston": "^3.11.0"
   },
   "devDependencies": {
