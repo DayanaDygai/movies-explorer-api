@@ -1,35 +1,32 @@
 {
   "name": "movies-explorer-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": " nodemon app.js",
+    "dev": "nodemon --inspect -- app.js",
     "lint": "npx eslint .",
     "test": "jest"
   },
-  "author": "Daiana",
+  "keywords": [],
+  "author": "Dayana",
   "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
-    "celebrate": "^15.0.3",
-    "dotenv": "^16.4.1",
-    "express": "^4.18.2",
-    "express-winston": "^4.2.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.1.1",
-    "validator": "^13.11.0",
-    "winston": "^3.11.0"
-  },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-react": "^7.33.2",
     "nodemon": "^3.0.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "celebrate": "^15.0.3",
+    "dotenv": "^16.3.2",
+    "express": "^4.18.2",
+    "express-winston": "^4.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "uuid": "^9.0.1",
+    "validator": "^13.11.0",
+    "winston": "^3.11.0"
   }
 }
