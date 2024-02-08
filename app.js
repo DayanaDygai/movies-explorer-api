@@ -17,7 +17,11 @@ const app = express();
 app.use(rateLimit);
 
 // подключаемся к серверу mongo
-mongoose.connect(MONGO_URL);
+mongoose.connect(MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  family: 4,
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

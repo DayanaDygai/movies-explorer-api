@@ -78,11 +78,12 @@ module.exports.createUser = async (req, res, next) => {
   try {
     const hash = await bcrypt.hash(req.body.password, SOLT_ROUND);
     const newUser = await User.create({
+      name: req.body.name,
       email: req.body.email,
       password: hash,
-      name: req.body.name,
     });
     return res.status(STATUS_OK_CREATED).send({
+      _id: newUser._id,
       name: newUser.name,
       email: newUser.email,
     });
