@@ -34,7 +34,7 @@ movieRouter.post('/', celebrate({
 
 movieRouter.delete('/:movieId', celebrate({
   params: Joi.object({
-    moviedId: Joi.string().hex().length(24).required(),
+    movieId: Joi.string().hex().length(24).required(),
   }),
 }), deleteMovieById);
 
