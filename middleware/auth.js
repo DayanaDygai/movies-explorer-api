@@ -4,7 +4,7 @@ const NotAuthenticateError = require('../errors/NotAuthenticateError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-module.exports.auth = (req, res, next) => {
+const auth = (req, res, next) => {
   let payload;
   try {
     const token = req.headers.authorization;
@@ -21,9 +21,11 @@ module.exports.auth = (req, res, next) => {
     if (error.name === 'JsonWebTokenError') {
       throw new NotAuthenticateError('Необходимо авторизоваться');
     }
-    next(error);
+    return next(error);
   }
 
   req.user = payload;
   next();
 };
+
+module.exports = auth;
