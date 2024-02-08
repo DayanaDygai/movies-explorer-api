@@ -21,9 +21,9 @@ module.exports.auth = (req, res, next) => {
     if (error.name === 'JsonWebTokenError') {
       throw new NotAuthenticateError('Необходимо авторизоваться');
     }
-    return next(error);
+    next(error);
   }
 
   req.user = payload;
-  return next();
+  next();
 };
