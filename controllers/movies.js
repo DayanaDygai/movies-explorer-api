@@ -84,7 +84,7 @@ module.exports.deleteMovieById = async (req, res, next) => {
     if (movie.owner.toString() !== req.user._id) {
       throw new ForibiddenError('Нет прав для удаления карточки');
     }
-    await Movie.deleteOne(movieId);
+    await Movie.deleteOne({ _id: movieId });
     return res.status(STATUS_OK).send({ message: 'Фильм успешно удален' });
   } catch (error) {
     if (error.name === 'CastError') {
