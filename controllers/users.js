@@ -97,16 +97,3 @@ module.exports.createUser = async (req, res, next) => {
     return next(error);
   }
 };
-
-// GET /users/me
-
-// # обновляет информацию о пользователе (email и имя)
-// PATCH /users/me
-
-// # создаёт пользователя с переданными в теле
-// # email, password и name
-// POST /signup
-
-// # проверяет переданные в теле почту и пароль
-// # и возвращает JWT
-// POST /signin

@@ -32,22 +32,10 @@ movieRouter.post('/', celebrate({
   }),
 }), createMovie);
 
-movieRouter.delete('/:moviedId', celebrate({
+movieRouter.delete('/:movieId', celebrate({
   params: Joi.object({
     moviedId: Joi.string().hex().length(24).required(),
   }),
 }), deleteMovieById);
 
 module.exports = movieRouter;
-
-// # возвращает все сохранённые текущим пользователем фильмы
-// GET /movies
-
-// # создаёт фильм с переданными в теле
-// # country, director,
-// duration, year, description, image, trailer, nameRU, nameEN
-// и thumbnail, movieId
-// POST /movies
-
-// # удаляет сохранённый фильм по id
-// DELETE /movies/_id

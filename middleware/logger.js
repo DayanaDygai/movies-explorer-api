@@ -1,5 +1,4 @@
 const winston = require('winston');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const expressWinston = require('express-winston');
 
 module.exports.requestLogger = expressWinston.logger({

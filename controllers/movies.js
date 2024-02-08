@@ -22,15 +22,34 @@ module.exports.getMovies = async (req, res, next) => {
 
 module.exports.createMovie = async (req, res, next) => {
   const {
-    // eslint-disable-next-line max-len
-    country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId,
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    nameRU,
+    nameEN,
+    thumbnail,
+    movieId,
   } = req.body;
   const owner = req.user._id;
 
   try {
     const movie = await Movie.create({
-      // eslint-disable-next-line max-len
-      country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId, owner,
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      nameRU,
+      nameEN,
+      thumbnail,
+      movieId,
+      owner,
     });
     return res.status(STATUS_OK_CREATED).send({
       owner: movie.owner,
@@ -65,7 +84,7 @@ module.exports.deleteMovieById = async (req, res, next) => {
     if (movie.owner.toString() !== req.user._id) {
       throw new ForibiddenError('Нет прав для удаления карточки');
     }
-    await Movie.deleteOne({ _id: movieId });
+    await Movie.deleteOne(movieId);
     return res.status(STATUS_OK).send({ message: 'Фильм успешно удален' });
   } catch (error) {
     if (error.name === 'CastError') {
@@ -74,14 +93,3 @@ module.exports.deleteMovieById = async (req, res, next) => {
     return next(error);
   }
 };
-
-// # возвращает все сохранённые текущим пользователем фильмы
-// GET /movies
-
-// # создаёт фильм с переданными в теле
-// eslint-disable-next-line max-len
-// # country, director, duration, year, description, image, trailer, nameRU, nameEN и thumbnail, movieId
-// POST /movies
-
-// # удаляет сохранённый фильм по id
-// DELETE /movies/_id
