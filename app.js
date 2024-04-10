@@ -26,13 +26,13 @@ mongoose.connect(NODE_ENV !== 'production' ? 'mongodb://localhost:27017/bitfilms
   family: 4,
 });
 
+app.use(helmet());
+
 app.use(cors({
   origin: 'https://movies.daiana.nomoredomainswork.ru', // Укажите домен, с которого разрешены запросы
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Разрешенные методы
   credentials: true, // Разрешить отправку cookies
 }));
-
-app.use(helmet());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
