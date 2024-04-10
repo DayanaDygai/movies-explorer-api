@@ -4,7 +4,9 @@ const helmet = require('helmet');
 
 const { errors } = require('celebrate');
 const dotenv = require('dotenv');
-const cors = require('./middleware/cors');
+// const cors = require('./middleware/cors');
+const cors = require('cors');
+
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const { handleError } = require('./middleware/handlerError');
@@ -16,7 +18,7 @@ dotenv.config();
 const { NODE_ENV, PORT, MONGO_URL } = process.env;
 
 const app = express();
-app.use(cors);
+
 app.use(rateLimit);
 
 // подключаемся к серверу mongo
@@ -27,6 +29,12 @@ mongoose.connect(NODE_ENV !== 'production' ? 'mongodb://localhost:27017/bitfilms
 });
 
 app.use(helmet());
+
+app.use(cors({
+  origin: 'https://movies.daiana.nomoredomainswork.ru', // Укажите домен, с которого разрешены запросы
+  methods: 'GET,POST,PUT,DELETE', // Разрешенные методы
+  credentials: true, // Разрешить отправку cookies
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
