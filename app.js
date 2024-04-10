@@ -16,6 +16,7 @@ dotenv.config();
 const { NODE_ENV, PORT, MONGO_URL } = process.env;
 
 const app = express();
+app.use(cors);
 app.use(rateLimit);
 
 // подключаемся к серверу mongo
@@ -26,7 +27,7 @@ mongoose.connect(NODE_ENV !== 'production' ? 'mongodb://localhost:27017/bitfilms
 });
 
 app.use(helmet());
-app.use(cors);
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
