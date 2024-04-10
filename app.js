@@ -1,10 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const cors = require('./middleware/cors');
 
 const { errors } = require('celebrate');
 const dotenv = require('dotenv');
+const cors = require('./middleware/cors');
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const { handleError } = require('./middleware/handlerError');
@@ -27,7 +27,6 @@ mongoose.connect(NODE_ENV !== 'production' ? 'mongodb://localhost:27017/bitfilms
 });
 
 app.use(helmet());
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
