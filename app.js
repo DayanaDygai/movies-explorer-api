@@ -4,7 +4,7 @@ const helmet = require('helmet');
 
 const { errors } = require('celebrate');
 const dotenv = require('dotenv');
-const cors = require('./middleware/cors');
+const cors = require('cors');
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const { handleError } = require('./middleware/handlerError');
