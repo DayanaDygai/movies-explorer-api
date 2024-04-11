@@ -28,10 +28,18 @@ mongoose.connect(NODE_ENV !== 'production' ? 'mongodb://localhost:27017/bitfilms
 
 app.use(helmet());
 
+const allowedOrigins = ['https://movies.daiana.nomoredomainswork.ru', 'http://localhost:3000'];
+
 app.use(cors({
-  origin: 'https://movies.daiana.nomoredomainswork.ru', // Укажите домен, с которого разрешены запросы
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Разрешенные методы
-  credentials: true, // Разрешить отправку cookies
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS не разрешен для этого источника'));
+    }
+  },
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 }));
 
 app.use(express.json());
