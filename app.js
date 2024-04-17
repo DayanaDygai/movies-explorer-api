@@ -29,12 +29,9 @@ mongoose.connect(NODE_ENV !== 'production' ? 'mongodb://localhost:27017/bitfilms
 app.use(helmet());
 
 const corsOptions = {
-  origin: true, // Добавьте здесь все домены, с которых ожидаются запросы
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  origin: ['http://localhost:3000', 'https://movies.daiana.nomoredomainswork.ru', 'http://movies.daiana.nomoredomainswork.ru'], // Добавьте здесь все домены, с которых ожидаются запросы
   credentials: true, // Это позволит отправку cookies и поддержку сессий через AJAX
-  allowedHeaders: 'Content-Type, Authorization',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions));

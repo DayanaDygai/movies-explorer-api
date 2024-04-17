@@ -2,8 +2,8 @@ const setRateLimit = require('express-rate-limit');
 
 const rateLimit = setRateLimit({
   windowMs: 60 * 1000,
-  max: 5,
-  message: 'Вы привысили лимит запросов в 5 минут',
+  limit: 200,
+  message: 'Вы превысили лимит запросов в 5 запросов в минуту',
   headers: true,
 });
 
