@@ -28,6 +28,8 @@ mongoose.connect(NODE_ENV !== 'production' ? 'mongodb://localhost:27017/bitfilms
 
 app.use(helmet());
 
+app.use(express.static('public'));
+
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://movies.daiana.nomoredomainswork.ru', 'http://movies.daiana.nomoredomainswork.ru'], // Добавьте здесь все домены, с которых ожидаются запросы
   credentials: true, // Это позволит отправку cookies и поддержку сессий через AJAX
