@@ -51,7 +51,9 @@ module.exports.createMovie = async (req, res, next) => {
       movieId,
       owner,
     });
+
     return res.status(STATUS_OK_CREATED).send({
+      _id: movie._id,
       owner: movie.owner,
       country: movie.country,
       director: movie.director,
@@ -64,7 +66,6 @@ module.exports.createMovie = async (req, res, next) => {
       nameEN: movie.nameEN,
       thumbnail: movie.thumbnail,
       movieId: movie.movieId,
-
     });
   } catch (error) {
     if (error.name === 'ValidationError') {
